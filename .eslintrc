@@ -1,0 +1,18 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0,
+    "new-cap": 0
+  },
+  "globals": {
+    "document": 1,
+    "encodeURIComponent": 1,
+    "module": 1,
+    "require": 1,
+    "setTimeout": 1,
+    "window": 1
+  },
+  "plugins": [
+    "react"
+  ]
+}

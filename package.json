@@ -1,0 +1,60 @@
+{
+  "name": "universal-routes",
+  "version": "1.0.0",
+  "description": "Universal JS routing w/ webpack code-split (chunking)",
+  "main": "index.js",
+  "engines": {
+    "node": "0.12.2",
+    "npm": "2.7.5"
+  },
+  "scripts": {
+    "browser": "open 'http://localhost:3101'",
+    "bundle": "cd bundle && node ../node_modules/webpack/bin/webpack --config app.webpack.config.js",
+    "bundle:dev": "npm run clean && cd bundle && ENV=development node ../node_modules/webpack/bin/webpack --config app.webpack.config.js && cd ../",
+    "clean": "cd public && rm -f *.bundle.js && rm -f *.js.map && cd ../",
+    "develop": "cd bundle && ENV=development node ../node_modules/webpack/bin/webpack -w --config app.webpack.config.js",
+    "lint": "./node_modules/eslint/bin/eslint.js bundle",
+    "localhost": "npm run bundle:dev && ENV=development ./node_modules/nodemon/bin/nodemon.js --watch bundle --watch locales --watch server --watch index.js --ignore 'bundle/javascripts/app/*Runtime.jsx' --ignore 'bundle/javascripts/app/component/*Runtime.jsx' --ext js,jsx ./index.js",
+    "postinstall": "npm run bundle",
+    "start": "node ./index.js",
+    "sync": "node_modules/browser-sync/bin/browser-sync start --proxy localhost --files 'public/*.html, public/*.css, public/*.js'",
+    "test": "echo no tests yet.",
+    "watch": "foreman start --port 3000 -f dev.procfile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brianswisher/deployable.git"
+  },
+  "author": "Brian Swisher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianswisher/deployable/issues"
+  },
+  "homepage": "https://github.com/brianswisher/universal-routes",
+  "dependencies": {
+    "alt": "^0.17.1",
+    "assets-webpack-plugin": "^2.2.0",
+    "babel": "^5.8.23",
+    "babel-core": "^5.8.25",
+    "babel-eslint": "^4.1.3",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.8.25",
+    "body-parser": "^1.12.4",
+    "browser-sync": "^1.9.0",
+    "cookie-parser": "^1.3.4",
+    "csurf": "^1.8.2",
+    "eslint": "^0.22.1",
+    "eslint-plugin-react": "^3.5.1",
+    "express": "^4.12.3",
+    "express-session": "^1.11.2",
+    "i18n-2": "git+ssh://git@github.com/jeresig/i18n-node-2.git#0.4.7",
+    "morgan": "^1.5.3",
+    "node-libs-browser": "^0.5.0",
+    "nodemon": "=1.3.7",
+    "radium": "^0.14.1",
+    "react": "^0.13.3",
+    "sinon": "^1.12.2",
+    "superagent": "^1.2.0",
+    "webpack": "^1.12.2"
+  }
+}
