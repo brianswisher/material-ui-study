@@ -23,5 +23,3 @@ The watch command will generate a file that loads conditionally in the `developm
 ```
 npm run bundle
 ```
-
-to generate the file that gets source controlled `public/app.bundle.js`. Commit this file along with your other changes in the bundle source files inside `bundle/**`.
