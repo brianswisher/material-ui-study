@@ -1,7 +1,5 @@
 import React from "react";
 
-let Link = Router.Link;
-
 class NotFoundScreen extends React.Component {
 
   componentDidMount() {

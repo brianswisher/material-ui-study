@@ -1,58 +1,66 @@
 import React from "react";
-let Screen;
 
-export default (path, dir) => {
-  let isServer = typeof window === "undefined";
-  let isClient = !isServer;
+let {createFactory, renderToString} = React;
+let isServer = typeof window === "undefined";
+let Route;
+let viewport = isServer ? null : document.getElementById("viewport");
+
+export default (path, props = {}) => {
   let {ROUTE} = require("./config/index").CONSTANTS;
-  let viewport;
-
-  if (isClient) {
-    viewport = document.getElementById("viewport");
-  }
 
   switch (path) {
     case ROUTE.ROOT:
       if (isServer) {
-        return `${dir}/HomeScreen`;
+        Route = createFactory( require("./HomeScreen") );
+
+        return renderToString(new Route(props));
       } else {
         return require.ensure([], function() {
-          Screen = require("./HomeScreen");
+          Route = require("./HomeScreen");
 
-          React.render(<Screen />, viewport);
+          React.render(<Route {...props} />, viewport);
         }, "home");
       }
+      break;
 
     case ROUTE.FEED:
       if (isServer) {
-        return `${dir}/FeedScreen`;
+        Route = createFactory( require("./FeedScreen") );
+
+        return renderToString(new Route(props));
       } else {
         return require.ensure([], function() {
-          Screen = require("./FeedScreen");
+          Route = require("./FeedScreen");
 
-          React.render(<Screen />, viewport);
+          React.render(<Route {...props} />, viewport);
         }, "feed");
       }
+      break;
 
     case ROUTE.PROFILE:
       if (isServer) {
-        return `${dir}/ProfileScreen`;
+        Route = createFactory( require("./ProfileScreen") );
+
+        return React.render(<Route {...props} />, viewport);
       } else {
         return require.ensure([], function() {
-          Screen = require("./ProfileScreen");
+          Route = require("./ProfileScreen");
 
-          React.render(<Screen />, viewport);
+          React.render(<Route {...props} />, viewport);
         }, "profile");
       }
+      break;
 
     default:
       if (isServer) {
-        return `${dir}/NotFoundScreen`;
+        Route = createFactory( require("./NotFoundScreen") );
+
+        return React.render(<Route {...props} />, viewport);
       } else {
         return require.ensure([], function() {
-          Screen = require("./NotFoundScreen");
+          Route = require("./NotFoundScreen");
 
-          React.render(<Screen />, viewport);
+          React.render(<Route {...props} />, viewport);
         }, "not_found");
       }
   }

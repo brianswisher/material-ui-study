@@ -27,7 +27,7 @@ let getHost = (req) => {
   return host;
 };
 
-let data = (req) => {
+let config = (req) => {
   var {locale, locales} = req.i18n;
   var i18n = locales[locale];
 
@@ -48,17 +48,15 @@ let route = require("../../bundle/javascripts/app/routes");
 
 router.get('*', csrfProtection, (req, res) => {
   var {locales} = req.i18n;
-  var props = data(req);
+  var props = config(req);
 
   props.i18n = locales[req.i18n.getLocale()];
-
-  Screen = createFactory( require(route(props.path, APP_DIR)) );
 
   res.send(require("./html")({
     assets: require("./assets.json"),
     i18n: props.i18n,
     locale: req.i18n.getLocale(),
-    markup: renderToString(new Screen(props))
+    markup: route(props.path, props)
   }));
 });
 

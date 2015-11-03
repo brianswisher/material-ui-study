@@ -1,7 +1,7 @@
 import route from "./routes";
 
 APP.navigate = (path, quietly, replace) => {
-  route(path, ".");
+  route(path);
 
   if (!quietly) {
     history.pushState({ path: path }, null, path);
