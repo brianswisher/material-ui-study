@@ -1,2 +1,0 @@
-bundle: npm run develop
-web: npm run localhost

@@ -12,14 +12,14 @@
     "bundle": "cd bundle && node ../node_modules/webpack/bin/webpack --config app.webpack.config.js",
     "bundle:dev": "npm run clean && cd bundle && ENV=development node ../node_modules/webpack/bin/webpack --config app.webpack.config.js && cd ../",
     "clean": "cd public && rm -f *.bundle.js && rm -f *.js.map && cd ../",
-    "develop": "cd bundle && ENV=development node ../node_modules/webpack/bin/webpack -w --config app.webpack.config.js",
+    "develop": "cd bundle && ENV=development node ../node_modules/webpack/bin/webpack -w --config app.webpack.config.js &",
     "lint": "./node_modules/eslint/bin/eslint.js bundle",
     "localhost": "npm run bundle:dev && ENV=development ./node_modules/nodemon/bin/nodemon.js --watch bundle --watch locales --watch server --watch index.js --ignore 'bundle/javascripts/app/*Runtime.jsx' --ignore 'bundle/javascripts/app/component/*Runtime.jsx' --ext js,jsx ./index.js",
     "postinstall": "npm run bundle",
     "start": "node ./index.js",
     "sync": "node_modules/browser-sync/bin/browser-sync start --proxy localhost --files 'public/*.html, public/*.css, public/*.js'",
     "test": "echo no tests yet.",
-    "watch": "foreman start --port 3000 -f dev.procfile"
+    "watch": "npm run develop && npm run localhost"
   },
   "repository": {
     "type": "git",
