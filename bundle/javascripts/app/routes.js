@@ -3,6 +3,10 @@ import React from "react";
 let {createFactory, renderToString} = React;
 let isServer = typeof window === "undefined";
 let Route;
+let routeFactory = {
+  factory: createFactory,
+  render: renderToString
+};
 let viewport = isServer ? null : document.getElementById("viewport");
 
 export default (path, props = {}) => {
@@ -11,9 +15,9 @@ export default (path, props = {}) => {
   switch (path) {
     case ROUTE.ROOT:
       if (isServer) {
-        Route = createFactory( require("./HomeScreen") );
+        routeFactory.module = "HomeScreen";
 
-        return renderToString(new Route(props));
+        return routeFactory;
       } else {
         return require.ensure([], function() {
           Route = require("./HomeScreen");
@@ -25,9 +29,9 @@ export default (path, props = {}) => {
 
     case ROUTE.FEED:
       if (isServer) {
-        Route = createFactory( require("./FeedScreen") );
+        routeFactory.module = "FeedScreen";
 
-        return renderToString(new Route(props));
+        return routeFactory;
       } else {
         return require.ensure([], function() {
           Route = require("./FeedScreen");
@@ -39,9 +43,9 @@ export default (path, props = {}) => {
 
     case ROUTE.PROFILE:
       if (isServer) {
-        Route = createFactory( require("./ProfileScreen") );
+        routeFactory.module = "ProfileScreen";
 
-        return React.render(<Route {...props} />, viewport);
+        return routeFactory;
       } else {
         return require.ensure([], function() {
           Route = require("./ProfileScreen");
@@ -53,9 +57,9 @@ export default (path, props = {}) => {
 
     default:
       if (isServer) {
-        Route = createFactory( require("./NotFoundScreen") );
+        routeFactory.module = "NotFoundScreen";
 
-        return React.render(<Route {...props} />, viewport);
+        return routeFactory;
       } else {
         return require.ensure([], function() {
           Route = require("./NotFoundScreen");

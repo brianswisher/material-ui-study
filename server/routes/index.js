@@ -55,6 +55,8 @@ router.get("/api/locations", function(req, res) {
 router.get("*", csrfProtection, (req, res) => {
   var {locales} = req.i18n;
   var props = config(req);
+  var {factory, module, render} = route(props.path);
+  var Route = factory( require(`${APP_DIR}/${module}`) );
 
   props.i18n = locales[req.i18n.getLocale()];
 
@@ -62,7 +64,7 @@ router.get("*", csrfProtection, (req, res) => {
     assets: require("./assets.json"),
     i18n: props.i18n,
     locale: req.i18n.getLocale(),
-    markup: route(props.path, props)
+    markup: render(new Route(props))
   }));
 });
 
