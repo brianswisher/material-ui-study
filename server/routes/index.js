@@ -48,6 +48,10 @@ if (PROXY) {
 let route = require("../../bundle/javascripts/app/routes");
 
 router.get("*", csrfProtection, (req, res) => {
+  global.navigator = {
+    userAgent: req.headers["user-agent"] || "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.3 Safari/537.36"
+  };
+
   var {locales} = req.i18n;
   var props = config(req);
   var {factory, module, render} = route(props.path);
