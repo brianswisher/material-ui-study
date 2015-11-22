@@ -54,8 +54,8 @@ router.get("/api/locations", function(req, res) {
 
 router.get("*", csrfProtection, (req, res) => {
   global.navigator = {
-    userAgent: req.headers['user-agent'] ||
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"};
+    userAgent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36"
+  };
 
   var {locales} = req.i18n;
   var props = config(req);
