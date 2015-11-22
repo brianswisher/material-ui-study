@@ -23,7 +23,7 @@ class Material extends React.Component {
     var { runtime } = this.state;
     var menuButton = (
       <IconButton onClick={this.props.onMenuIconButtonTouch}>
-        <FontIcon className="material-icons menu-icon icon-navigation-white icon-navigation-white-ic_menu_white_24dp">home</FontIcon>
+        <FontIcon className="material-icons">navigation</FontIcon>
       </IconButton>
     );
 
