@@ -36,7 +36,7 @@ class HomeScreen extends HomeScreenRuntime {
     return (
       <div style={styles.container}>
         <h1>Material UI Study</h1>
-        <Paper className="topNav" rounded={false}>
+        <Paper rounded={false}>
           <AppBar
             iconElementLeft={menuButton}
             title="Sample project"
