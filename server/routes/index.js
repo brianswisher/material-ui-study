@@ -51,7 +51,7 @@ router.get("*", csrfProtection, (req, res) => {
   const {headers} = req;
 
   global.navigator = {
-    userAgent: headers["user-agent"] || null
+    userAgent: headers["user-agent"] || ""
   };
 
   var {locales} = req.i18n;
