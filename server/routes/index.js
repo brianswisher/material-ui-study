@@ -13,7 +13,6 @@ let ENV = process.env.ENV;
 let PROXY = process.env.PROXY || true;
 
 let csrfProtection = csrf({ cookie: true });
-let db = diskdb.connect("server/db", ["locations"]);
 let router = express.Router();
 let path;
 let Screen;
@@ -47,10 +46,6 @@ if (PROXY) {
 }
 
 let route = require("../../bundle/javascripts/app/routes");
-
-router.get("/api/locations", function(req, res) {
-  res.json(db.locations.find());
-});
 
 router.get("*", csrfProtection, (req, res) => {
   var {locales} = req.i18n;

@@ -1,5 +1,4 @@
 import HomeScreenRuntime from "./HomeScreenRuntime";
-import Location from "./component/Location";
 import mui from "material-ui";
 import Radium from "radium";
 import React from "react";

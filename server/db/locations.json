@@ -1,6 +1,0 @@
-[
-  { "id": 0, "name": "home", "path": "/" },
-  { "id": 3, "name": "a", "path": "/a" },
-  { "id": 4, "name": "b", "path": "/b" },
-  { "id": 5, "name": "c", "path": "/c" }
-]
