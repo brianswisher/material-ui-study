@@ -1,7 +1,7 @@
 {
   "name": "material-ui-study",
   "version": "1.0.0",
-  "description": "Universal JS routing w/ webpack code-split (chunking)",
+  "description": "material-ui proof of concepts",
   "main": "index.js",
   "engines": {
     "node": "0.12.2",
@@ -23,12 +23,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/brianswisher/deployable.git"
+    "url": "https://github.com/brianswisher/material-ui-study.git"
   },
   "author": "Brian Swisher",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brianswisher/deployable/issues"
+    "url": "https://github.com/brianswisher/material-ui-study/issues"
   },
   "homepage": "https://github.com/brianswisher/material-ui-study",
   "dependencies": {
