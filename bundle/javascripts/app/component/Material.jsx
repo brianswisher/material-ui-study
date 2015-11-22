@@ -15,6 +15,10 @@ class Material extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({runtime: true});
+  }
+
   render() {
     var { runtime } = this.state;
     var menuButton = (
@@ -23,18 +27,16 @@ class Material extends React.Component {
       </IconButton>
     );
 
-    if (runtime) {
-      return (
-        <Paper className="topNav" rounded={false}>
-          <AppBar
-            iconElementLeft={menuButton}
-            title="Sample project"
-            zDepth={0} />
-        </Paper>
-      );
-    }
+    if (!runtime) return null;
 
-    return null;
+    return (
+      <Paper className="topNav" rounded={false}>
+        <AppBar
+          iconElementLeft={menuButton}
+          title="Sample project"
+          zDepth={0} />
+      </Paper>
+    );
   }
 }
 
