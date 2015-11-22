@@ -14,6 +14,7 @@ export default function(options) {
     <meta charSet="UTF-8"/>
     <meta content="width=device-width,initial-scale=1,user-scalable=yes,minimum-scale=1.0" name="viewport" />
     <title>${i18n.page_title}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <div id="viewport">${markup}</div>

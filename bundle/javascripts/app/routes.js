@@ -1,11 +1,12 @@
 import React from "react";
+import ReactDom from "react-dom";
+import ReactDOMServer from "react-dom/server";
 
-let {createFactory, renderToString} = React;
 let isServer = typeof window === "undefined";
 let Route;
 let routeFactory = {
-  factory: createFactory,
-  render: renderToString
+  factory: React.createFactory,
+  render: ReactDOMServer.renderToString
 };
 let viewport = isServer ? null : document.getElementById("viewport");
 
@@ -22,36 +23,8 @@ export default (path, props = {}) => {
         return require.ensure([], function() {
           Route = require("./HomeScreen");
 
-          React.render(<Route {...props} />, viewport);
+          ReactDom.render(<Route {...props} />, viewport);
         }, "home");
-      }
-      break;
-
-    case ROUTE.FEED:
-      if (isServer) {
-        routeFactory.module = "FeedScreen";
-
-        return routeFactory;
-      } else {
-        return require.ensure([], function() {
-          Route = require("./FeedScreen");
-
-          React.render(<Route {...props} />, viewport);
-        }, "feed");
-      }
-      break;
-
-    case ROUTE.PROFILE:
-      if (isServer) {
-        routeFactory.module = "ProfileScreen";
-
-        return routeFactory;
-      } else {
-        return require.ensure([], function() {
-          Route = require("./ProfileScreen");
-
-          React.render(<Route {...props} />, viewport);
-        }, "profile");
       }
       break;
 
@@ -64,7 +37,7 @@ export default (path, props = {}) => {
         return require.ensure([], function() {
           Route = require("./NotFoundScreen");
 
-          React.render(<Route {...props} />, viewport);
+          ReactDom.render(<Route {...props} />, viewport);
         }, "not_found");
       }
   }
