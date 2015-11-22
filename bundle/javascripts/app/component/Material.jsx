@@ -7,20 +7,34 @@ const FontIcon = mui.FontIcon;
 const AppBar = mui.AppBar;
 
 class Material extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      runtime: false
+    };
+  }
+
   render() {
+    var { runtime } = this.state;
     var menuButton = (
       <IconButton onClick={this.props.onMenuIconButtonTouch}>
         <FontIcon className="material-icons menu-icon icon-navigation-white icon-navigation-white-ic_menu_white_24dp">home</FontIcon>
       </IconButton>
     );
-    return (
-      <Paper className="topNav" rounded={false}>
-        <AppBar
-          iconElementLeft={menuButton}
-          title="Sample project"
-          zDepth={0} />
-      </Paper>
-    );
+
+    if (runtime) {
+      return (
+        <Paper className="topNav" rounded={false}>
+          <AppBar
+            iconElementLeft={menuButton}
+            title="Sample project"
+            zDepth={0} />
+        </Paper>
+      );
+    }
+
+    return null;
   }
 }
 
